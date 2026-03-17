@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+
+body {
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  padding: 30px;
+  color: #eaeaea;
+
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+
+.informacoes-iniciais-div {
+  flex: 1;
+}
+
+
+.cria-figura-div {
+  flex: 1;
+  background: #1f1f1f;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  transition: 0.3s;
+  margin-top: 5.5rem;
+}
+
+
+.cria-figura-div:hover {
+  transform: translateY(-3px);
+}
+
+
+h1 {
+  font-size: 28px;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+
+.paragrafo-descricao {
+  background: #1f1f1f;
+  padding: 18px;
+  border-radius: 12px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+  color: #d1d1d1;
+}
+
+
+img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+table tr:first-child {
+  background: #333;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #2a2a2a;
+  color: #fff;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+
+input:focus,
+select:focus {
+  border-color: #888;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+
+input[type="button"] {
+  background: linear-gradient(90deg, #5f5f5f, #555);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: 0.3s;
+}
+
+
+input[type="button"]:hover {
+  transform: scale(1.02);
+  background: linear-gradient(90deg, #444, #666);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+
+#btSalvaFigura {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+
+#outMsgUser {
+  text-align: center;
+  font-weight: 500;
+  color: #bbbbbb;
+  margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .paragrafo-descricao {
+    font-size: 14px;
+  }
+}

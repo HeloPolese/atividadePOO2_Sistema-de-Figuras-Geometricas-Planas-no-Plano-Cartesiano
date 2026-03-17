@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Figuras Geométricas</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div class="informacoes-iniciais-div">
+    <h1>Sistema de Figuras Geométricas Planas no Plano Cartesiano</h1>
+    <p class="paragrafo-descricao">Este sistema permite a criação de figuras geométricas planas por meio da inserção de
+      pontos no plano cartesiano. O
+      usuário deve selecionar o tipo de figura e informar as coordenadas (X, Y) de seus vértices.
+
+      Para formar um triângulo corretamente, é necessário informar três pontos distintos que não estejam alinhados. Isso
+      significa que os pontos não podem estar na mesma reta, pois, nesse caso, não formam uma área e não é possível
+      criar
+      um triângulo. Uma boa dica é evitar pontos que “crescem em linha”, como (1,1), (2,2) e (3,3).
+
+      Além disso, para fechar a figura corretamente no sistema, é necessário repetir o primeiro ponto ao final da
+      sequência. Dessa forma, o triângulo será considerado válido e poderá ser criado com sucesso.</p>
+
+    <img src="./imagens/imagem_ilustrativa_plano_cartesiano.jpg" alt="imagem ilustrativa plano cartesiano">
+  </div>
+  <div class="cria-figura-div">
+    <table border="1">
+      <tr>
+        <td colspan="2"> Cadastro da Figura </td>
+      </tr>
+      <tr>
+        <td>ID:</td>
+        <td><input type="text" id="inID" disabled></td>
+      </tr>
+      <tr>
+        <td>Tipo:</td>
+        <td>
+          <select id="inTipo">
+            <option value="" selected disabled> Escolha o Tipo: </option>
+            <option value="Retângulo">Retângulo</option>
+            <option value="Triângulo">Triângulo</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <table border="1">
+      <tr>
+        <td colspan="2" align="center"> Coordenadas dos Vértices (X, Y)</td>
+      </tr>
+      <tr>
+        <td>X:</td>
+        <td><input type="number" id="inX" placeholder="Digite o X do ponto" disabled></td>
+      </tr>
+      <tr>
+        <td>Y:</td>
+        <td><input type="number" id="inY" placeholder="Digite o Y do ponto" disabled></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center"><input type="button" id="btSalvaPonto" value="Salvar Vértice da Figura"></td>
+      </tr>
+    </table>
+    <br>
+    <input type="button" id="btSalvaFigura" value="Salvar Figura Geométrica">
+    <p id="outMsgUser"></p>
+  </div>
+
+  <script src="./javaScript/view.js" type="module" charset="utf-8"></script>
+</body>
+
+</html>
