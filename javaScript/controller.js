@@ -2,11 +2,9 @@ import { FiguraGeometrica } from "./FiguraGeometrica.js";
 import { Ponto } from "./Ponto.js";
 
 const figurasGeometricas = [];
-const vetorTempPontos = [];
+const vetorTemporarioDePontos = [];
 
-
-export function criaId(tipo) {
-
+export function criarIdFiguraGeometrica(tipo) {
     const quantidade = figurasGeometricas.length;
     let nome = "";
 
@@ -15,55 +13,47 @@ export function criaId(tipo) {
     } else {
         nome = "retangulo";
     }
-    const qtdString = String(quantidade).padStart(3, "0");
-    const id = nome + qtdString;
+    const quantidadeFormatada = String(quantidade).padStart(3, "0");
+    const id = nome + quantidadeFormatada;
     return id;
 }
 
 export function criarPontoFiguraGeometrica(x, y) {
-    if (x === "" || y === "") {
-        throw new Error(" Não deixe os campos vazios!");
-    }
-    if (typeof y == "string" || typeof x == "string") {
-        throw new TypeError(" O pontos devem possuir um valor númerico!");
-    }
     if (x < 0 || y < 0) {
         throw new RangeError(" Os pontos devem ser maiores que zero!");
     }
-
     const ponto = new Ponto(x, y);
-    if (vetorTempPontos.push(ponto)) {
-        return true
-    } else {
-        return false;
-    }
+    vetorTemporarioDePontos.push(ponto); return true;
 }
+
 function verificaQuantidadePontos(tipo) {
     if (tipo == "Triângulo") {
-        if (vetorTempPontos.length != 4) {
+        if (vetorTemporarioDePontos.length != 4) {
             return false;
         } else {
             return true;
         }
     } else {
-        if (vetorTempPontos.length != 5) {
+        if (vetorTemporarioDePontos.length != 5) {
             return false;
         } else {
             return true;
         }
     }
 }
+
 function validarFechamento(tipo) {
-    let primeiroPonto = vetorTempPontos[0];
+    let primeiroPonto = vetorTemporarioDePontos[0];
+
     if (tipo == "Triângulo") {
-        let ultimoPontoTriangulo = vetorTempPontos[3];
+        let ultimoPontoTriangulo = vetorTemporarioDePontos[3];
         if (primeiroPonto.valorX != ultimoPontoTriangulo.valorX && primeiroPonto.valorY != ultimoPontoTriangulo.valorY) {
             return false
         } else {
             return true;
         }
     } else {
-        let ultimoPontoRetangulo = vetorTempPontos[4];
+        let ultimoPontoRetangulo = vetorTemporarioDePontos[4];
         if (primeiroPonto.valorX != ultimoPontoRetangulo.valorX && primeiroPonto.valorY != ultimoPontoRetangulo.valorY) {
             return false
         } else {
@@ -73,17 +63,17 @@ function validarFechamento(tipo) {
 }
 
 function criaObjetoFiguraGeometrica(id, tipo) {
-    const copiaVetorTempPontos = vetorTempPontos.slice();
-    const figura = new FiguraGeometrica(id, tipo, copiaVetorTempPontos);
+    const copiavetorTemporarioDePontos = vetorTemporarioDePontos.slice();
+    const figura = new FiguraGeometrica(id, tipo, copiavetorTemporarioDePontos);
     figurasGeometricas.push(figura);
-    vetorTempPontos.length = 0;
+    vetorTemporarioDePontos.length = 0;
     return true;
 }
 
 export function criarFiguraGeometrica(id, tipo) {
 
     if (tipo == "Triângulo") {
-        if (!podeFormarTriangulo()) {
+        if (!trianguloEhValido()) {
             throw new Error("Os pontos informados não formam os lados de um triângulo.");
         }
     }
@@ -100,13 +90,13 @@ export function criarFiguraGeometrica(id, tipo) {
     }
 }
 
-function podeFormarTriangulo() {
+function trianguloEhValido() {
 
-    const areaTriangulo = vetorTempPontos[0].valorX * (vetorTempPontos[1].valorY - vetorTempPontos[2].valorY) +
-        vetorTempPontos[1].valorX * (vetorTempPontos[2].valorY - vetorTempPontos[1].valorY) +
-        vetorTempPontos[2].valorX * (vetorTempPontos[0].valorY - vetorTempPontos[1].valorY);
+    const areaBruta = vetorTemporarioDePontos[0].valorX * (vetorTemporarioDePontos[1].valorY - vetorTemporarioDePontos[2].valorY) +
+        vetorTemporarioDePontos[1].valorX * (vetorTemporarioDePontos[2].valorY - vetorTemporarioDePontos[0].valorY) +
+        vetorTemporarioDePontos[2].valorX * (vetorTemporarioDePontos[0].valorY - vetorTemporarioDePontos[1].valorY);
 
-    if (areaTriangulo > 0) {
+    if (areaBruta > 0) {
         return true;
     } else {
         return false;

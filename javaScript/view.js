@@ -6,13 +6,13 @@ const btSalvarFiguraGeometrica = document.getElementById("btSalvaFigura");
 const idFiguraGeometrica = document.getElementById("inID");
 const outMensagemUser = document.getElementById("outMsgUser");
 
-import { criarFiguraGeometrica, criaId, criarPontoFiguraGeometrica } from "./controller.js";
+import { criarFiguraGeometrica, criarIdFiguraGeometrica, criarPontoFiguraGeometrica } from "./controller.js";
 
 tipoFiguraGeometrica.addEventListener('change', () => {
     x.disabled = false;
     y.disabled = false;
     try { // try fica na view
-        const idGerado = criaId(tipoFiguraGeometrica.value);
+        const idGerado = criarIdFiguraGeometrica(tipoFiguraGeometrica.value);
         idFiguraGeometrica.value = idGerado;
     } catch (e) {
         const erro = e.name + " " + e.message;
@@ -56,6 +56,8 @@ btSalvarFiguraGeometrica.addEventListener("click", () => {
     try {
         if (criarFiguraGeometrica(idFiguraGeometrica.value, tipoFiguraGeometrica.value)) {
             outMensagemUser.innerHTML = "Figura geométrica criada!";
+            idFiguraGeometrica.value = "";
+            tipoFiguraGeometrica.value = "";
         }
     } catch (e) {
         const erro = e.name + " " + e.message;
