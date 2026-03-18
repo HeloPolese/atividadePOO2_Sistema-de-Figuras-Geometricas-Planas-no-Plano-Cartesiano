@@ -47,14 +47,14 @@ function validarFechamento(tipo) {
 
     if (tipo == "Triângulo") {
         let ultimoPontoTriangulo = vetorTemporarioDePontos[3];
-        if (primeiroPonto.valorX != ultimoPontoTriangulo.valorX && primeiroPonto.valorY != ultimoPontoTriangulo.valorY) {
-            return false
+        if (primeiroPonto.valorX != ultimoPontoTriangulo.valorX || primeiroPonto.valorY != ultimoPontoTriangulo.valorY) {
+            return false;
         } else {
             return true;
         }
     } else {
         let ultimoPontoRetangulo = vetorTemporarioDePontos[4];
-        if (primeiroPonto.valorX != ultimoPontoRetangulo.valorX && primeiroPonto.valorY != ultimoPontoRetangulo.valorY) {
+        if (primeiroPonto.valorX != ultimoPontoRetangulo.valorX || primeiroPonto.valorY != ultimoPontoRetangulo.valorY) {
             return false
         } else {
             return true;
@@ -72,16 +72,18 @@ function criaObjetoFiguraGeometrica(id, tipo) {
 
 export function criarFiguraGeometrica(id, tipo) {
 
+      if (!verificaQuantidadePontos(tipo)) {
+        if (tipo == "Triângulo") {
+            throw new RangeError(" Devem ser criados 4 pares de pontos para o triângulo!");
+        } else { throw new RangeError(" Devem ser criados 5 pares de pontos para o retângulo!"); }
+    }
     if (tipo == "Triângulo") {
         if (!trianguloEhValido()) {
             throw new Error("Os pontos informados não formam os lados de um triângulo.");
         }
     }
-    if (!verificaQuantidadePontos(tipo)) {
-        throw new RangeError(" Devem ser criados 4 pares de pontos para o triângulo!");
-    }
     if (!validarFechamento(tipo)) {
-        throw new Error(" O primeiroPonto ponto e o último ponto do triângulo devem ser iguais!");
+        throw new Error(" O primeiroPonto ponto e o último ponto da figura devem ser iguais!");
     }
     if (!criaObjetoFiguraGeometrica(id, tipo)) {
         throw new Error(" Erro ao criar objeto figura geométrica!");
