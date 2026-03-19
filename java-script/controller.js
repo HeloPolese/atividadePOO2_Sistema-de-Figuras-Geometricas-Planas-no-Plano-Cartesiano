@@ -10,7 +10,7 @@ export function criarIdFiguraGeometrica(tipo) {
 
     if (tipo == "Triângulo") {
         nome = "triangulo";
-    } else {
+    } if (tipo == "Retângulo") {
         nome = "retangulo";
     }
     const quantidadeFormatada = String(quantidade).padStart(3, "0");
@@ -33,7 +33,8 @@ function verificaQuantidadePontos(tipo) {
         } else {
             return true;
         }
-    } else {
+    }
+    if (tipo == "Retângulo") {
         if (vetorTemporarioDePontos.length != 5) {
             return false;
         } else {
@@ -72,10 +73,14 @@ function criaObjetoFiguraGeometrica(id, tipo) {
 
 export function criarFiguraGeometrica(id, tipo) {
 
-      if (!verificaQuantidadePontos(tipo)) {
+    if (!verificaQuantidadePontos(tipo)) {
         if (tipo == "Triângulo") {
             throw new RangeError(" Devem ser criados 4 pares de pontos para o triângulo!");
-        } else { throw new RangeError(" Devem ser criados 5 pares de pontos para o retângulo!"); }
+        } if (tipo == "Retângulo") {
+            throw new RangeError(" Devem ser criados 5 pares de pontos para o retângulo!");
+        } else {
+            throw new Error("Escolha o tipo da figura!");
+        }
     }
     if (tipo == "Triângulo") {
         if (!trianguloEhValido()) {
